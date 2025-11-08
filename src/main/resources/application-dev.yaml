@@ -1,5 +1,5 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/gerador-uuid-core
+    url: jdbc:postgresql://postgres:5432/gerador-uuid-core
     username: postgres
     password: gerador@123

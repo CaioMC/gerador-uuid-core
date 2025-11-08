@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gerador-uuid-config
+data:
+  DATABASE_NAME: gerador-uuid-core
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/gerador-uuid-core
