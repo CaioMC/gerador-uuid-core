@@ -1,0 +1,91 @@
+spring:
+  application:
+    name: gerador-uuid-core
+
+  jackson:
+    time-zone: UTC
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+
+    hikari:
+      minimum-idle: 0
+      maximum-pool-size: 20
+      max-lifetime: 300000
+      transaction-isolation: TRANSACTION_READ_COMMITTED
+      auto-commit: false
+      validation-timeout: 3000
+      leak-detection-threshold: 0
+      data-source-properties:
+        useServerPrepStmts: false
+        cachePrepStmts: true
+        prepStmtCacheSize: 500
+        prepStmtCacheSqlLimit: 1024
+
+  flyway:
+    enabled: true
+    baselineOnMigrate: true
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  data:
+    web:
+      sort:
+        sort-parameter: order
+      pageable:
+        page-parameter: page
+        one-indexed-parameters: true
+        size-parameter: pageSize
+        max-page-size: 50
+        default-page-size: 10
+
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.actuate.autoconfigure.metrics.MetricsAutoConfiguration
+      - org.springframework.boot.actuate.autoconfigure.metrics.SystemMetricsAutoConfiguration
+      - org.springframework.boot.actuate.autoconfigure.metrics.export.simple.SimpleMetricsExportAutoConfiguration
+
+springdoc:
+  default-produces-media-type: application/json
+  api-docs:
+    path: /swagger-ui/v3/api-docs
+  swagger-ui:
+    title: Gerador UUID Core
+    doc-expansion: none
+    display-request-duration: true
+    groups-order: DESC
+    operationsSorter: alpha
+    tagsSorter: alpha
+    disable-swagger-default-url: true
+    path: /swagger-ui
+  group-configs:
+    - group: v1 - api
+      paths-to-match: /v1/**
+
+api:
+  security:
+    jwt:
+      secret: n7Q2zXE9+fR3GjG2Q1v9K2Wq4tYF8xX0Y0mK9P2qQ3w=
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  metrics:
+    enable:
+      process: false
+      system: false
+  endpoint:
+    metrics:
+      enabled: false
+
+server:
+  port: 8081
