@@ -20,7 +20,6 @@ public interface UsuarioControllerOpenApi {
             @ApiResponse(responseCode = "400", description = "O  Usuário não pode ser criado.")})
     ResponseEntity<ResponseId> criarUsuario(@Valid @RequestBody CriarUsuarioCommand cmd);
 
-
     @Operation(description = "Alterar um  usuário", method = "PUT")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Usuario alterado com sucesso."),
             @ApiResponse(responseCode = "400", description = "O  Usuário não pode ser alterado.")})

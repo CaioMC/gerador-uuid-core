@@ -1,4 +1,4 @@
-package com.fiap.pj.core;
+package com.fiap.pj;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

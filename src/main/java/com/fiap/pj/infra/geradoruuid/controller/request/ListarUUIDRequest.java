@@ -1,4 +1,4 @@
-package com.fiap.pj.infra.usuario.controller.request;
+package com.fiap.pj.infra.geradoruuid.controller.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -8,12 +8,9 @@ import org.springframework.data.domain.Pageable;
 
 @Getter
 @AllArgsConstructor
-public class ListarUsuarioRequest {
+public class ListarUUIDRequest {
 
-    private String nome;
     @Setter
     @JsonIgnore
     private Pageable pageable;
-
-    private Boolean ativo;
 }

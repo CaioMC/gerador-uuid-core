@@ -23,12 +23,16 @@ public class UsuarioEntity implements Serializable {
 
     @Id
     private UUID id;
+
     @Column(nullable = false)
     private String nome;
+
     @Column(nullable = false)
     private String sobreNome;
+
     @Column(nullable = false, unique = true)
     private String email;
+
     @Column(nullable = false)
     @Setter
     private String senha;

@@ -3,6 +3,7 @@ package com.fiap.pj.infra.sk.jpa;
 import com.fiap.pj.infra.sk.api.Slice;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
@@ -42,6 +43,20 @@ public class ExtendedRepositoryImpl<T, I extends Serializable> extends SimpleJpa
         }
 
         List<S> list = result.stream().map(entity -> factory.createProjection(type, entity)).toList();
+        return new Slice<>(hasNext, list);
+    }
+
+    @Override
+    public <S> Slice<S> findProjectedBy(Pageable pageable, Class<S> type) {
+        Page<T> result = this.findAll(pageable);
+        boolean hasNext = result.getContent().size() == (pageable.getPageSize() + JUMP);
+
+        List<T> content = result.getContent();
+        if (hasNext) {
+            content = content.subList(0, pageable.getPageSize());
+        }
+
+        List<S> list = content.stream().map(entity -> factory.createProjection(type, entity)).toList();
         return new Slice<>(hasNext, list);
     }
 }

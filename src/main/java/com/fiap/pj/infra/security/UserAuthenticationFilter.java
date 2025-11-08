@@ -64,5 +64,4 @@ public class UserAuthenticationFilter extends OncePerRequestFilter {
         }
         chain.doFilter(request, response);
     }
-
 }

@@ -15,4 +15,6 @@ public interface ExtendedRepository<T, I extends Serializable> extends JpaReposi
     List<T> findBy(Specification<T> spec, Pageable pageable);
 
     <S> Slice<S> findProjectedBy(Specification<T> specs, Pageable pageable, Class<S> type);
+
+    <S> Slice<S> findProjectedBy(Pageable pageable, Class<S> type);
 }
