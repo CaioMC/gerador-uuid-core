@@ -116,6 +116,10 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Debug github.run_number
+        run: |
+          echo "Run number: ${{ github.run_number }}"
+
       - name: Build and Push Docker image to ECR
         uses: docker/build-push-action@v6
         with:
