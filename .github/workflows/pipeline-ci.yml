@@ -123,6 +123,6 @@ jobs:
           push: true
           tags: |
             ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY }}:latest
-            ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY }}:${{ github.run_number }}
+            ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY }}:${{ github.run_id }}
           # O github.run_number é uma variável do GitHub Actions que representa o número sequencial da execução do workflow.
           # Cada vez que o workflow roda, esse número aumenta, permitindo identificar versões diferentes da imagem gerada.
