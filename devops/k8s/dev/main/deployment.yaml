@@ -20,7 +20,7 @@ spec:
       terminationGracePeriodSeconds: 60
       containers:
         - name: gerador-uuid-core
-          image: gerador-uuid-core:lastest # Sempre deve ser "latest" para uso local.
+          image: gerador-uuid-core:latest # Sempre deve ser "latest" para uso local.
           imagePullPolicy: Never
           resources:
             requests:
@@ -52,6 +52,11 @@ spec:
                 configMapKeyRef:
                   name: gerador-uuid-config
                   key: SPRING_DATASOURCE_URL
+            - name: SPRING_PROFILES_ACTIVE
+              valueFrom:
+                configMapKeyRef:
+                  name: gerador-uuid-config
+                  key: SPRING_PROFILES_ACTIVE
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:

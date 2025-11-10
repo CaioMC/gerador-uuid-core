@@ -4,4 +4,5 @@ metadata:
   name: gerador-uuid-config
 data:
   DATABASE_NAME: gerador-uuid-core
-  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/gerador-uuid-core
+  SPRING_DATASOURCE_URL: jdbc:postgresql://gerador-uuid-postgres-service:5432/gerador-uuid-core
+  SPRING_PROFILES_ACTIVE: dev

@@ -6,7 +6,7 @@
 URL="http://localhost:8081/actuator/health"
 
 # Quantidade de requisições simultâneas (processos paralelos)
-CONCURRENCY=1000
+CONCURRENCY=200
 
 # Duração total do teste em segundos
 DURATION=20
