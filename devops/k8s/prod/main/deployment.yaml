@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gerador-uuid-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gerador-uuid-core
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: gerador-uuid-core
+    spec:
+      terminationGracePeriodSeconds: 60
+      imagePullSecrets:
+        - name: ecr-secret
+      containers:
+        - name: gerador-uuid-core
+          image: 914788356223.dkr.ecr.us-east-1.amazonaws.com/gerador-uuid-core:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "1200Mi"
+              cpu: "250m"
+            limits:
+              memory: 1536Mi
+          ports:
+            - containerPort: 8081
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8081
+            initialDelaySeconds: 30
+            periodSeconds: 15
+            timeoutSeconds: 3
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8081
+            initialDelaySeconds: 20
+            periodSeconds: 15
+            timeoutSeconds: 3
+            failureThreshold: 3
+          env:
+            - name: AWS_RDS_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: aws-rds-postgres-configmap
+                  key: AWS_RDS_URL
+            - name: AWS_RDS_POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: aws-rds-postgres-secret
+                  key: AWS_RDS_POSTGRES_USER
+            - name: AWS_RDS_POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: aws-rds-postgres-secret
+                  key: AWS_RDS_POSTGRES_PASSWORD

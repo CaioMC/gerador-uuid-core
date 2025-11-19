@@ -2,7 +2,7 @@
 set -e
 
 # =============================
-# Deploy da aplicação Spring Boot + PostgreSQL no Kubernetes local com Docker
+# Deploy da aplicação Spring Boot + PostgreSQL + Metrics HPA no Kubernetes local com Docker
 # =============================
 
 NAMESPACE="gerador-uuid-dev"
