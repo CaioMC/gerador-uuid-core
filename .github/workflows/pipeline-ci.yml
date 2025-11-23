@@ -9,7 +9,7 @@ on:
 
 env:
   PROJECT_NAME: 'gerador-uuid-core'
-  RDS_DB_NAME: 'gerador-uuid-rds'
+  RDS_DB_NAME: 'db-gerador-uuid-core'
   JAVA_VERSION: '17.0.13'
   DISTRIBUTION: 'zulu'
   AWS_REGION: 'us-east-1'
