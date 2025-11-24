@@ -26,10 +26,10 @@ spec:
           imagePullPolicy: Always
           resources:
             requests:
-              memory: "1200Mi"
+              memory: "768Mi"
               cpu: "250m"
             limits:
-              memory: 1536Mi
+              memory: 1024Mi
           ports:
             - containerPort: 8081
           livenessProbe:
