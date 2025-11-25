@@ -49,17 +49,17 @@ spec:
             timeoutSeconds: 3
             failureThreshold: 3
           env:
-            - name: AWS_RDS_URL
+            - name: SPRING_DATASOURCE_URL
               valueFrom:
                 configMapKeyRef:
                   name: aws-rds-postgres-configmap
                   key: AWS_RDS_URL
-            - name: AWS_RDS_POSTGRES_USER
+            - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: aws-rds-postgres-secret
                   key: AWS_RDS_POSTGRES_USER
-            - name: AWS_RDS_POSTGRES_PASSWORD
+            - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: aws-rds-postgres-secret
