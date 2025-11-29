@@ -5,25 +5,14 @@ metadata:
   namespace: gerador-uuid-prod
   annotations:
     kubernetes.io/ingress.class: kong
-    # Aplica o Rate Limit a TODAS as rotas gerenciadas por este Ingress
-    konghq.com/plugins: rate-limit-5-per-second
+    # Aplica o Rate Limit a TODAS as rotas
+    konghq.com/plugins: rate-limit-5-per-second, redirect-swagger # Aplicamos os dois plugins
+    # Condição para que o redirect-swagger só seja aplicado na rota /
+    konghq.com/path-regex: "^/$"
 spec:
   rules:
     - http:
         paths:
-          # Rota 1: Redirecionamento da Raiz (/ )
-          - path: /
-            pathType: Exact
-            backend:
-              service:
-                name: gerador-uuid-core-service
-                port:
-                  number: 80
-            # Anotação para aplicar o KongIngress de redirecionamento
-            annotations:
-              konghq.com/override: redirect-root-ingress
-
-          # Rota 2: Rota principal para a aplicação (ex: /api)
           - path: /
             pathType: Prefix
             backend:

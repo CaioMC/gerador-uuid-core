@@ -1,9 +1,0 @@
-apiVersion: configuration.konghq.com/v1
-kind: KongIngress
-metadata:
-  name: redirect-root-ingress
-  namespace: gerador-uuid-prod
-route:
-  # Configura o redirecionamento 302 para a rota que usar esta configuração
-  redirect_code: 302
-  redirect_uri: /swagger-ui/index.html
