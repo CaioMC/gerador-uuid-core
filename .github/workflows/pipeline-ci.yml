@@ -90,10 +90,10 @@ jobs:
 #          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 #        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=CaioMC_gerador-uuid-core
 
-  push-to-aws-ecr:
-    name: Publish Docker Image to Amazon ECR
-    runs-on: ubuntu-latest
-    needs: sonar
+#  push-to-aws-ecr:
+#    name: Publish Docker Image to Amazon ECR
+#    runs-on: ubuntu-latest
+#    needs: sonar
 
 #    steps:
 #      - name: Checkout source
@@ -136,7 +136,7 @@ jobs:
   aws-deploy-manifest:
     name: Deploy Manifest AWS EKS
     runs-on: ubuntu-latest
-    needs: push-to-aws-ecr
+#    needs: push-to-aws-ecr
     steps:
       # 🔹 Configurar AWS CLI
       - name: Configure AWS credentials
