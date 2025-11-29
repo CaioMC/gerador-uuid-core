@@ -5,6 +5,8 @@ metadata:
   namespace: gerador-uuid-prod
   labels:
     app: gerador-uuid-core
+  annotations:
+    konghq.com/plugins: disable-gzip # Aplica o plugin para desabilitar a compressão
 spec:
   type: ClusterIP
   selector:

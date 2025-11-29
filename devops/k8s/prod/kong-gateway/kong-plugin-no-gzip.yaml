@@ -1,0 +1,11 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: disable-gzip
+  namespace: gerador-uuid-prod
+plugin: response-transformer
+config:
+  # Remove o cabeçalho Content-Encoding para desabilitar a compressão
+  remove:
+    headers:
+      - "Content-Encoding"
