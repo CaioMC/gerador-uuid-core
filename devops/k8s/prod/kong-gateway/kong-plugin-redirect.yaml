@@ -9,7 +9,4 @@ config:
   add:
     headers:
       - "Location: /swagger-ui/index.html"
-  # Opcional: Remove o cabeçalho Content-Type para evitar problemas de CORS/MIME
-  remove:
-    headers:
-      - "Content-Type"
+      - "Content-Type: text/html"
