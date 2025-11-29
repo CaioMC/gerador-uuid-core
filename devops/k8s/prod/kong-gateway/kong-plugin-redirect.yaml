@@ -5,9 +5,7 @@ metadata:
   namespace: gerador-uuid-prod
 plugin: response-transformer
 config:
-  # Adiciona o cabeçalho Location
+  # Adiciona o cabeçalho Location para o redirecionamento
   add:
     headers:
       - "Location: /swagger-ui/index.html"
-  # Altera o status code (o campo 'status_code' fica diretamente no 'config')
-  status_code: 302

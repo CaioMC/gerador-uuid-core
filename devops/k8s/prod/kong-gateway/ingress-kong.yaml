@@ -6,9 +6,11 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: kong
     # Aplica o Rate Limit a TODAS as rotas
-    konghq.com/plugins: rate-limit-5-per-second, redirect-swagger # Aplicamos os dois plugins
-    # Condição para que o redirect-swagger só seja aplicado na rota /
-    konghq.com/path-regex: "^/$"
+    konghq.com/plugins: rate-limit-5-per-second
+    # Anotação de redirecionamento 302 para a rota raiz
+    konghq.com/path.redirect-root-route: /
+    konghq.com/path.redirect-root-route.redirect-to: /swagger-ui/index.html
+    konghq.com/path.redirect-root-route.redirect-code: "302"
 spec:
   rules:
     - http:
