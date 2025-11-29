@@ -3,9 +3,11 @@ kind: KongPlugin
 metadata:
   name: redirect-swagger
   namespace: gerador-uuid-prod
-plugin: redirect
+plugin: response-transformer
 config:
-  # Onde redirecionar
-  redirect_to: /swagger-ui/index.html
-  # Código de status HTTP (301 para permanente, 302 para temporário)
+  # Adiciona o cabeçalho Location
+  add:
+    headers:
+      - "Location: /swagger-ui/index.html"
+  # Altera o status code (o campo 'status_code' fica diretamente no 'config')
   status_code: 302
