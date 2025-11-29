@@ -7,4 +7,3 @@ plugin: rate-limiting
 config:
   minute: 5
   policy: local
-  limit: 5

@@ -77,15 +77,15 @@ log_status "4. Instalando o Kong Ingress Controller..."
 install_kong_helm
 
 # 5. Deploy do Kong Gateway (Plugins e Ingress)
-log_status "4. Aplicando Configuração do Kong Gateway (Plugins e Ingress)..."
+log_status "5. Aplicando Configuração do Kong Gateway (Plugins e Ingress)..."
 apply_manifests "$KONG_PATH" "Plugins e Ingress"
 
 # 6. Aplicando HPA
-log_status "5. Aplicando Horizontal Pod Autoscaler (HPA)..."
+log_status "6. Aplicando Horizontal Pod Autoscaler (HPA)..."
 kubectl apply -f "${APP_PATH}/main/hpa.yaml" -n "$NAMESPACE"
 
 # 7. Verificação Final
-log_status "6. Verificando status dos Pods..."
+log_status "7. Verificando status dos Pods..."
 kubectl get pods -n "$NAMESPACE"
 
 log_status "========================================================"
