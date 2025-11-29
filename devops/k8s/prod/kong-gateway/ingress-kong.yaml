@@ -6,9 +6,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: kong
     # Aplica o Rate Limit a TODAS as rotas
-    konghq.com/plugins: rate-limit-5-per-second, rewrite-root-to-swagger
-    # Condição para que o rewrite-root-to-swagger só seja aplicado na rota /
-    konghq.com/path-regex: "^/$"
+    konghq.com/plugins: rate-limit-5-per-second
 spec:
   rules:
     - http:
