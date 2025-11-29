@@ -2,7 +2,7 @@ apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
   name: rate-limit-5-per-minute
-  namespace: default
+  namespace: gerador-uuid-prod
 plugin: rate-limiting
 config:
   minute: 5

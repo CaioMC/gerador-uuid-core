@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: gerador-uuid-ingress
-  namespace: default
+  namespace: gerador-uuid-prod
   annotations:
     # Configura o Ingress para usar o Kong
     kubernetes.io/ingress.class: kong

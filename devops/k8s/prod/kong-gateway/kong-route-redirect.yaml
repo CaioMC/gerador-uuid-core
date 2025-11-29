@@ -2,7 +2,7 @@ apiVersion: configuration.konghq.com/v1
 kind: KongRoute
 metadata:
   name: redirect-root-route
-  namespace: default
+  namespace: gerador-uuid-prod
   annotations:
     # Acopla esta configuração à Route criada pelo Ingress para o path "/"
     konghq.com/route-for: gerador-uuid-ingress
