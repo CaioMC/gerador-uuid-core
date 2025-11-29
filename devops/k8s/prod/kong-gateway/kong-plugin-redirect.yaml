@@ -3,15 +3,13 @@ kind: KongPlugin
 metadata:
   name: redirect-swagger
   namespace: gerador-uuid-prod
-  annotations:
-    # Acopla esta configuração à Route criada pelo Ingress para o path "/"
-    konghq.com/route-for: gerador-uuid-ingress # Ponto de atenção: O valor deve ser o nome do Ingress
 plugin: response-transformer
 config:
+  # Adiciona o cabeçalho Location para forçar o redirecionamento
   add:
     headers:
-      # Injeta o cabeçalho Location para o Swagger
       - "Location: /swagger-ui/index.html"
-  # Opcional: Define o status code para 302 (Redirecionamento)
-  # Nota: O Response Transformer não altera o status code do Kong,
-  # mas o Kong Ingress Controller pode ser configurado para fazer isso.
+  # Opcional: Remove o cabeçalho Content-Type para evitar problemas de CORS/MIME
+  remove:
+    headers:
+      - "Content-Type"

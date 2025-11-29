@@ -3,11 +3,18 @@ kind: Service
 metadata:
   name: gerador-uuid-core-service
   namespace: gerador-uuid-prod
+  labels:
+    app: gerador-uuid-core
+  annotations:
+    # Aplica o plugin 'redirect-swagger' ao Service.
+    # Isso fará com que todas as requisições para este Service sejam redirecionadas.
+    # É a solução mais simples para contornar o erro do KongRoute.
+    konghq.com/plugins: redirect-swagger
 spec:
-  type: ClusterIP # O Kong acessará internamente
+  type: ClusterIP
   selector:
-    app: gerador-uuid-core # Deve corresponder ao label do seu Deployment
+    app: gerador-uuid-core
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8081 # Porta que o Spring Boot está ouvindo
+      targetPort: 8081 # Porta interna do Spring Boot
