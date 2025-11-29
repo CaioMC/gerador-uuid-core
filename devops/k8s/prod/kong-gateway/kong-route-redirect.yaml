@@ -1,0 +1,13 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongRoute
+metadata:
+  name: redirect-root-route
+  namespace: default
+  annotations:
+    # Acopla esta configuração à Route criada pelo Ingress para o path "/"
+    konghq.com/route-for: gerador-uuid-ingress
+route:
+  paths:
+    - /
+  plugins:
+    - name: redirect-swagger

@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gerador-uuid-ingress
+  namespace: default
+  annotations:
+    # Configura o Ingress para usar o Kong
+    kubernetes.io/ingress.class: kong
+    # Aplica o Rate Limit a todas as rotas deste Ingress
+    konghq.com/plugins: rate-limit-5-per-minute
+spec:
+  rules:
+    - http:
+        paths:
+          # Rota 1: Redirecionamento da Raiz (/ )
+          - path: /
+            pathType: Exact
+            backend:
+              service:
+                name: gerador-uuid-core-service
+                port:
+                  number: 80
+            # A anotação deve ser aplicada à Route do Kong.
+            # O Kong Ingress Controller permite anotações por Route usando o CRD KongRoute.
