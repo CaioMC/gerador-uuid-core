@@ -5,11 +5,6 @@ metadata:
   namespace: gerador-uuid-prod
   labels:
     app: gerador-uuid-core
-  annotations:
-    # Aplica o plugin 'redirect-swagger' ao Service.
-    # Isso fará com que todas as requisições para este Service sejam redirecionadas.
-    # É a solução mais simples para contornar o erro do KongRoute.
-    konghq.com/plugins: redirect-swagger
 spec:
   type: ClusterIP
   selector:
