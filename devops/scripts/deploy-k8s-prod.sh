@@ -46,7 +46,7 @@ install_kong_helm() {
     helm repo update
 
     # Instala o Kong no namespace 'kong' (padrão )
-    helm install kong kong/kong -n kong --create-namespace --wait
+    helm upgrade --install kong kong/kong -n kong --create-namespace --wait
     log_success "Kong Ingress Controller instalado com sucesso."
 }
 
