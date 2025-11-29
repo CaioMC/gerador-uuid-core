@@ -1,0 +1,15 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: rewrite-root-to-swagger
+  namespace: gerador-uuid-prod
+plugin: request-transformer
+config:
+  # Remove o path original
+  remove:
+    uri:
+      - /
+  # Adiciona o novo path
+  add:
+    uri:
+      - /swagger-ui/index.html
