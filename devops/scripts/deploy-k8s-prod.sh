@@ -39,6 +39,17 @@ apply_manifests() {
     done
 }
 
+# Função para instalar o Kong via Helm
+install_kong_helm() {
+    log_status "Instalando o Kong Ingress Controller via Helm..."
+    helm repo add kong https://charts.konghq.com
+    helm repo update
+
+    # Instala o Kong no namespace 'kong' (padrão )
+    helm install kong kong/kong -n kong --create-namespace --wait
+    log_success "Kong Ingress Controller instalado com sucesso."
+}
+
 # ==============================================================================
 # Início do Deploy
 # ==============================================================================
@@ -61,15 +72,19 @@ log_status "3. Aplicando Deploy da Aplicação Spring Boot..."
 kubectl apply -f "${APP_PATH}/main/deployment.yaml" -n "$NAMESPACE"
 kubectl apply -f "${APP_PATH}/main/services.yaml" -n "$NAMESPACE" # Service ClusterIP
 
-# 4. Deploy do Kong Gateway (Plugins e Ingress)
+# 4. Instalação do Kong Ingress Controller
+log_status "4. Instalando o Kong Ingress Controller..."
+install_kong_helm
+
+# 5. Deploy do Kong Gateway (Plugins e Ingress)
 log_status "4. Aplicando Configuração do Kong Gateway (Plugins e Ingress)..."
 apply_manifests "$KONG_PATH" "Plugins e Ingress"
 
-# 5. Aplicando HPA
+# 6. Aplicando HPA
 log_status "5. Aplicando Horizontal Pod Autoscaler (HPA)..."
 kubectl apply -f "${APP_PATH}/main/hpa.yaml" -n "$NAMESPACE"
 
-# 6. Verificação Final
+# 7. Verificação Final
 log_status "6. Verificando status dos Pods..."
 kubectl get pods -n "$NAMESPACE"
 
